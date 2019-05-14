@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 
-function Slideshow({ data, delay, containerStyle, renderItem }) {
+function Slideshow({ animated, containerStyle, data, delay, renderItem }) {
   const [position, setPosition] = useState(0);
   const scrollViewRef = useRef();
   const [windowWidth, setWindowWidth] = useState(0);
@@ -22,18 +22,17 @@ function Slideshow({ data, delay, containerStyle, renderItem }) {
   }
 
   function handleTransitingSlide() {
-    const newPosition = position + 1;
+    const newPosition = data.length > position + 1 ? position + 1 : 0;
     const scrollrPosition = newPosition * windowWidth;
 
     timer = setTimeout(() => {
       scrollViewRef.current.scrollTo({ x: scrollrPosition, amimated: true });
-      if (position < data.length) setPosition(newPosition);
-      else setPosition(0);
+      setPosition(newPosition);
     }, delay);
   }
 
   useEffect(() => {
-    handleTransitingSlide();
+    if (animated) handleTransitingSlide();
     return () => {
       clearTimeout(timer);
     };
@@ -43,13 +42,13 @@ function Slideshow({ data, delay, containerStyle, renderItem }) {
     <View
       onLayout={setElementWidth}
       style={[
-        containerStyle,
         {
           flex: 1,
           overflow: 'hidden',
           borderRadius: 10,
-          marginBottom: 10,
+          marginBottom: 10
         },
+        containerStyle
       ]}
     >
       <ScrollView
@@ -70,14 +69,16 @@ Slideshow.defaultProps = {
   data: [],
   delay: 5000,
   containerStyle: {},
+  animated: true
 };
 
 Slideshow.propTypes = {
+  animated: PropTypes.bool,
+  containerStyle: PropTypes.shape({}),
   data: PropTypes.arrayOf(PropTypes.any.isRequired),
   delay: PropTypes.number,
-  containerStyle: PropTypes.shape({}),
 
-  renderItem: PropTypes.func.isRequired,
+  renderItem: PropTypes.func.isRequired
 };
 
 export default Slideshow;
