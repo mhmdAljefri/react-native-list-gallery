@@ -1,4 +1,4 @@
-# React Native List Gallery &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) [![npm version](https://img.shields.io/badge/npm-v1.0.0-blue.svg)](https://www.npmjs.com/package/react-native-list-gallery)
+# React Native List Gallery &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mhmdAljefri/react-native-list-gallery/blob/master/LICENSE.md) [![npm version](https://img.shields.io/badge/npm-v1.0.0-blue.svg)](https://www.npmjs.com/package/react-native-list-gallery)
 
 ## Props
 
