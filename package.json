@@ -1,0 +1,24 @@
+{
+  "name": "react-native-list-gallery",
+  "version": "1.0.0",
+  "description": "react native list gallery enhanced scrollView library to make cusomized animated gallery slide for applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhmdAljefri/react-native-list-gallery.git"
+  },
+  "keywords": [
+    "react-native",
+    "list-gallery",
+    "images-gallery"
+  ],
+  "author": "Mohammad Aljefri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhmdAljefri/react-native-list-gallery/issues"
+  },
+  "homepage": "https://github.com/mhmdAljefri/react-native-list-gallery#readme"
+}
