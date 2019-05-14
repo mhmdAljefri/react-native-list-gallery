@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mhmdAljefri/react-native-list-gallery/issues"
   },
-  "homepage": "https://github.com/mhmdAljefri/react-native-list-gallery#readme"
+  "homepage": "https://github.com/mhmdAljefri/react-native-list-gallery#readme",
+  "peerDependencies": {
+    "react": "^16.8.6"
+  }
 }
