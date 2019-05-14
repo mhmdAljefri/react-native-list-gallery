@@ -2,8 +2,6 @@
 
 ## Props
 
-## Props
-
 | Name           | Type     | default    | Description                                         |
 | -------------- | -------- | ---------- | --------------------------------------------------- |
 | animated       | bool     | true       | Allow automatic gallery swaping                     |
