@@ -2,7 +2,34 @@ import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 
-function Slideshow({ animated, containerStyle, data, delay, renderItem }) {
+function Dot({ active }) {
+  return (
+    <View
+      style={{
+        width: 6,
+        height: 6,
+        margin: 4,
+        borderRadius: 3,
+        backgroundColor: active ? '#000' : '#eee'
+      }}
+    />
+  );
+}
+
+Dot.propTypes = {
+  active: PropTypes.bool.isRequired
+};
+
+function Slideshow({
+  animated,
+  containerStyle,
+  data,
+  delay,
+  dotsWrapperStyle,
+  showDots,
+  renderItem,
+  renderDot
+}) {
   const [position, setPosition] = useState(0);
   const scrollViewRef = useRef();
   const [windowWidth, setWindowWidth] = useState(0);
@@ -44,7 +71,6 @@ function Slideshow({ animated, containerStyle, data, delay, renderItem }) {
       style={[
         {
           flex: 1,
-          overflow: 'hidden',
           borderRadius: 10,
           marginBottom: 10
         },
@@ -58,9 +84,20 @@ function Slideshow({ animated, containerStyle, data, delay, renderItem }) {
         showsHorizontalScrollIndicator={false}
       >
         {data.map((item, key) => (
-          <View style={{ width: windowWidth }}>{renderItem(item, key)}</View>
+          <View key={key} style={{ width: windowWidth }}>
+            {renderItem(item)}
+          </View>
         ))}
       </ScrollView>
+      {showDots && (
+        <View style={dotsWrapperStyle}>
+          {data.map((dot, dotKey) => {
+            if (typeof renderDot === 'function')
+              return renderDot({ active: position === dotKey }, dotKey);
+            return <Dot key={`dot-${dotKey}`} active={position === dotKey} />;
+          })}
+        </View>
+      )}
     </View>
   );
 }
@@ -69,7 +106,14 @@ Slideshow.defaultProps = {
   data: [],
   delay: 5000,
   containerStyle: {},
-  animated: true
+  animated: true,
+  showDots: false,
+  dotsWrapperStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  renderDot: undefined
 };
 
 Slideshow.propTypes = {
@@ -77,8 +121,11 @@ Slideshow.propTypes = {
   containerStyle: PropTypes.shape({}),
   data: PropTypes.arrayOf(PropTypes.any.isRequired),
   delay: PropTypes.number,
+  showDots: PropTypes.bool,
+  dotsWrapperStyle: PropTypes.shape({}),
 
-  renderItem: PropTypes.func.isRequired
+  renderItem: PropTypes.func.isRequired,
+  renderDot: PropTypes.func
 };
 
 export default Slideshow;
