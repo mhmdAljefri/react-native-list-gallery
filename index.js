@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, I18nManager } from 'react-native';
 
 function Dot({ active }) {
   return (
@@ -39,13 +39,18 @@ function Slideshow({
     setWindowWidth(element.nativeEvent.layout.width);
   }
 
+  function handleScroll(scrollrPosition) {
+    const x = I18nManager.isRTL ? -scrollrPosition : scrollrPosition;
+    scrollViewRef.current.scrollTo({ x, amimated: true });
+    setPosition(newPosition);
+  }
+
   function handleHandScroll({ nativeEvent: { contentOffset } }) {
     clearTimeout(timer);
 
     const newPosition = Math.round(contentOffset.x / windowWidth);
     const scrollrPosition = newPosition * windowWidth;
-    scrollViewRef.current.scrollTo({ x: scrollrPosition, amimated: true });
-    setPosition(newPosition);
+    handleScroll(scrollrPosition);
   }
 
   function handleTransitingSlide() {
@@ -53,8 +58,7 @@ function Slideshow({
     const scrollrPosition = newPosition * windowWidth;
 
     timer = setTimeout(() => {
-      scrollViewRef.current.scrollTo({ x: scrollrPosition, amimated: true });
-      setPosition(newPosition);
+      handleScroll(scrollrPosition);
     }, delay);
   }
 
