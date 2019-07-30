@@ -42,7 +42,6 @@ function Slideshow({
   function handleScroll(scrollrPosition) {
     const x = I18nManager.isRTL ? -scrollrPosition : scrollrPosition;
     scrollViewRef.current.scrollTo({ x, amimated: true });
-    setPosition(newPosition);
   }
 
   function handleHandScroll({ nativeEvent: { contentOffset } }) {
@@ -51,6 +50,7 @@ function Slideshow({
     const newPosition = Math.round(contentOffset.x / windowWidth);
     const scrollrPosition = newPosition * windowWidth;
     handleScroll(scrollrPosition);
+    setPosition(newPosition);
   }
 
   function handleTransitingSlide() {
@@ -59,6 +59,7 @@ function Slideshow({
 
     timer = setTimeout(() => {
       handleScroll(scrollrPosition);
+      setPosition(newPosition);
     }, delay);
   }
 
