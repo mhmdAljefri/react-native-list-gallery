@@ -1,6 +1,6 @@
 {
   "name": "react-native-list-gallery",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react native list gallery enhanced scrollView library to make cusomized animated gallery slide for applications",
   "main": "index.js",
   "scripts": {
