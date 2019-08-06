@@ -85,11 +85,12 @@ function Slideshow({
       <ScrollView
         onMomentumScrollEnd={handleHandScroll}
         ref={scrollViewRef}
+        contentContainerStyle={{ flex: 1 }}
         horizontal
         showsHorizontalScrollIndicator={false}
       >
         {data.map((item, key) => (
-          <View key={key} style={{ width: windowWidth }}>
+          <View key={key} style={{ width: windowWidth, flex: 1 }}>
             {renderItem(item)}
           </View>
         ))}
