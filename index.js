@@ -90,7 +90,7 @@ function Slideshow({
         showsHorizontalScrollIndicator={false}
       >
         {data.map((item, key) => (
-          <View key={key} style={{ width: windowWidth, flex: 1 }}>
+          <View key={key} style={{ width: windowWidth }}>
             {renderItem(item)}
           </View>
         ))}
