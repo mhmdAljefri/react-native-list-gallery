@@ -40,7 +40,7 @@ function Slideshow({
   }
 
   function handleScroll(scrollrPosition) {
-    const x = I18nManager.isRTL ? -scrollrPosition : scrollrPosition;
+    const x = scrollrPosition;
     scrollViewRef.current.scrollTo({ x, amimated: true });
   }
 
@@ -85,7 +85,6 @@ function Slideshow({
       <ScrollView
         onMomentumScrollEnd={handleHandScroll}
         ref={scrollViewRef}
-        contentContainerStyle={{ flex: 1 }}
         horizontal
         showsHorizontalScrollIndicator={false}
       >
